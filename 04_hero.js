@@ -39,22 +39,103 @@
     ///////////////////////////
     // Put your code here!
     ///////////////////////////
+    function LivingThing(monsterName, monsterHealth) {    //a class and an object
+      let name = monsterName;        //let makes it private
+      let health = monsterHealth;
 
-    
+      this.isAlive = function(){
+        //return this.health > 0    //another way of writingn what's below
+        if (health > 0){
+          return true;
+        }else{
+          return false;
+        }
+      }
+      //getter for name
+      this.getName = function(){    //adding "this." enables us to use monster.getName()
+        return name;
+      }//getter for health
+      this.getHealth = function(){
+        return health;
+      }
+      this.setHealth = function(newHealth){
+        health = newHealth;
+      }
+    }
+    function Hero(heroName, heroHealth){
+
+      LivingThing.call(this, heroName, heroHealth)    //call means to call LivingThing's constructor!!!
+
+      this.attack = function(monster){    //any parameter passed in a local function becomes declared
+
+        //generate random numbers between 0 and 10 for the damage taken in the attack for both
+        let heroDamage = getRandomIntInclusive(0, 10);
+        let monsterDamage = getRandomIntInclusive(0, 10);
+        //decrease the health of the living thing with the random number generated
+        monster.setHealth(monster.getHealth() - monsterDamage);
+
+        //decrease the lealth of the hero (this) with the random number generated
+        this.setHealth(this.getHealth() - heroDamage);
+
+        console.log(this.getName() + ' took ' + heroDamage + 'damage. Damage =' + this.getHealth());
+        console.log(monster.getName() + '  took ' + monsterDamage + 'damage. Damage =' + this.getHealth());
+
+      }
+      this.fight = function(arrayOfMonsters){
+      //loop over passed in array of monsters
+        for(let i=0;i<arrayOfMonsters.length; i++){
+       //don't attack if monster is dead or hero is dead
+
+            //arrayOfMonsters[i].isAlive();
+          //this.attack(arrayOfMonsters[i]);
+          //while loop:
+
+          while (arrayOfMonsters[i].isAlive && this.isAlive()){   //should this have a break if hero.isAlive = false?
+//this is a nested loop: the while fights one monester until dead, the for loop goes thru each monster.
+            this.attack(arrayOfMonsters[i]);
+            if (!this.isAlive() == false){
+              break;
+            }
+
+
+          }
+        }
+      }
+
+    }
+
+
+      function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+        }
+
+
+        let Hero1 = new Hero('superman', 100);  //**remove Hero1-->"hero".  hero now has all the methods and properties of LivingThing
+        console.log(Hero1.isAlive);
+
+        let Rat = new LivingThing('rat', 5);    //objects are Capitalized
+        let Goblin = new LivingThing('goblin', 30);
+        let Ogre = new LivingThing('ogre', 80);
+
+        let monsters = [Rat, Goblin, Ogre]    //this is a list of variables, each one of which has properties and values.
+
+
 
     //The code below should work when you are done
     console.log("A hero emerges!");
 
-    console.log("The noble " + hero.getName() + " has vowed to defeat the monsters and save the realm");
+    console.log("The noble " + Hero1.getName() + " has vowed to defeat the monsters and save the realm");
     console.log("Will they be victorious?");
 
-    hero.fight(monsters);
+    Hero1.fight(monsters);    //changed hero to "Hero1"
 
-    if (hero.isAlive()) {
-        console.log("The hero, " + hero.getName() + ", prevailed!");
+    if (Hero1.isAlive()) {
+        console.log("The hero, " + Hero1.getName() + ", prevailed!");
     }
     else {
-        console.log(hero.getName() + " was bested by the monsters. We are doomed");
+        console.log(Hero1.getName() + " was bested by the monsters. We are doomed");
     }
 
-})();
+  })();

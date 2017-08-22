@@ -15,25 +15,25 @@
     ///////////////////////////
     // Put your code here!
     ///////////////////////////
-    function LivingThing(name, health) {    //a class and an object
+    function LivingThing(name, health){
       this.name = name;
       this.health = health;
 
-      this.isAlive = function(){
-        //return this.health > 0    //another way of writingn what's below
-        if (this.health > 0){
+      this.isAlive = function() {
+        if(this.health > 0){
           return true;
         }else{
           return false;
         }
       }
     }
+    let Rat = new LivingThing('rat', 5);
+    let Goblin = new LivingThing('goblin', 30);
+    let Ogre = new LivingThing('ogre', 80);
 
-        let Rat = new LivingThing('rat', 5);    //objects are Capitalized
-        let Goblin = new LivingThing('goblin', 30);
-        let Ogre = new LivingThing('ogre', 80);
+    let monsters = [Rat, Goblin, Ogre]
 
-        let monsters = [Rat, Goblin, Ogre]
+
 
 
     //The code below should work when you are done

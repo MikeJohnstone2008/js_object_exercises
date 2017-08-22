@@ -33,28 +33,18 @@
     ///////////////////////////
     // Put your code here!
     ///////////////////////////
-function LivingThing(name, health) {    //a class and an object
+function LivingThing(name, health){
   this.name = name;
   this.health = health;
 }
+let Rat = new LivingThing('rat', 5);
+let Goblin = new LivingThing('goblin', 30);
+let Ogre = new LivingThing('ogre', 80);
 
-    let Rat = new LivingThing('rat', 5);    //objects are Capitalized
-    let Goblin = new LivingThing('goblin', 30);
-    let Ogre = new LivingThing('ogre', 80);
+let monsters = [Rat, Goblin, Ogre]
 
-    let monsters = [Rat, Goblin, Ogre]
 
-    //The code below should work when you are done
-    console.log("Monsters!");
-
-    //for...of loop supported in ES6
-    //not compatable before IE edge
-    //@see http://www.benmvp.com/learning-es6-for-of-loop/
-    //@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
-    console.log("ES6 for...in");
-    for (let monster of monsters) {
-        console.log(monster.name + ": " + monster.health);
-    }
+  
 
     //just a spacer
     console.log("===================");

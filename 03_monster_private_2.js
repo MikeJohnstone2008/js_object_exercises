@@ -21,33 +21,30 @@
     ///////////////////////////
     // Put your code here!
     ///////////////////////////
-    function LivingThing(monsterName, monsterHealth) {    //a class and an object
-      let name = monsterName;        //let makes it private
+    function LivingThing(monsterName, monsterHealth){
+      let name = monsterName;
       let health = monsterHealth;
-
-      this.isAlive = function(){
-        //return this.health > 0    //another way of writingn what's below
-        if (health > 0){
+//write a function to check if LivingThing is alive:
+      this.isAlive = function() {
+        if(this.health > 0){
           return true;
         }else{
           return false;
         }
       }
-      //getter for name
+      //write getter functions for name and health:
       this.getName = function(){
-        return name;
-      }//getter for health
+          return name;
+      }
       this.getHealth = function(){
         return health;
       }
     }
+    let Rat = new LivingThing('rat', 5);
+    let Goblin = new LivingThing('goblin', 30);
+    let Ogre = new LivingThing('ogre', 80);
 
-        let Rat = new LivingThing('rat', 5);    //objects are Capitalized
-        let Goblin = new LivingThing('goblin', 30);
-        let Ogre = new LivingThing('ogre', 80);
-
-        let monsters = [Rat, Goblin, Ogre]    //this is a list of variables, each one of which has properties and values.
-
+    let monsters = [Rat, Goblin, Ogre]
 
 
 
